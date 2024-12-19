@@ -1,0 +1,53 @@
+#my simple calculator with basic arithmetic operations
+def addition(a,b):
+    return a+b
+def subtraction(a,b):
+    return a-b
+def multiplication(a,b):
+    return a*b
+def divide(a,b):
+    if b==0:
+        return "Error!Division by Zero."
+    else:
+        return a/b
+def calculator():
+    while True:
+        print("\nEnter your choice:")
+        print("+")
+        print("-")
+        print("*")
+        print("/")
+        print("exit")
+    
+    #taking inputs from user
+        choice = input("Enter choice (+,-,*,/,exit):")
+        if choice=='exit':
+            print("Exiting the calculator.")
+            break
+        if choice not in ['+','-','*','/']:
+            print("Invalid input!please choose valid operation.")
+            continue
+        try:
+            num1 = float(input("Enter first number:"))
+            num2 = float(input("Enter second number:"))
+        except ValueError:
+            print("Invalid input!Please enter the valid numbers")
+
+        switch = {
+            '+':lambda: print(f"{num1} + {num2} = {addition(num1,num2)}"),
+
+            '-':lambda: print(f"{num1} - {num2} = {subtraction(num1,num2)}"),
+
+            '*':lambda: print(f"{num1} * {num2} = {multiplication(num1,num2)}"),
+
+            '/':lambda: print(f"{num1} / {num2} = {divide(num1,num2)}" if num2!=0 else "Error!Division by zero"),
+
+        }
+        action = switch.get(choice)
+        if action:
+            action()
+        else:
+            print("Invalid input!please choose a valid operation.")
+
+#now my calculator is ready run it and get your solutions
+calculator()
